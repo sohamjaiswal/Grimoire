@@ -1,9 +1,6 @@
 import asyncio
-from pathlib import Path
 import shlex
-import stat
 from typing import Dict, List
-from guilded import ChatMessage
 from guilded.ext import commands
 from horde_sdk import ANON_API_KEY, RequestErrorResponse
 
