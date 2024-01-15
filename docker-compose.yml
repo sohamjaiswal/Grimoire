@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  grimoire-bot:
+    container_name: grimoire-bot
+    build:
+      context: .
+      dockerfile: ./docker/dev/bot.dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./bot:/app
+    env_file:
+      - .env
+    depends_on:
+      - grimoire-database
+      - grimoire-consumet
+  grimoire-database:
+    container_name: grimoire-database
+    hostname: grimoire-database
+    image: surrealdb/surrealdb:v1.0.2
+    restart: unless-stopped
+    volumes:
+      - ./db/data:/db
+    env_file:
+      - .env
+    # command: surreal start --allow-guests --auth --log $DB_LOG_LEVEL --user $DB_USER --pass $DB_PASSWORD file:/db
+    command: start --allow-guests --auth --user $DB_USER --pass $DB_PASSWORD file:/db
+    ports:
+      - 8000:8000
+  grimoire-consumet:
+    platform: linux/x86_64
+    container_name: grimoire-consumet
+    hostname: grimoire-consumet
+    image: riimuru/consumet-api:latest
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=PROD

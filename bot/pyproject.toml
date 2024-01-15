@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "bot"
+version = "0.1.0"
+description = ""
+authors = ["SoSweetHam <sosweetham@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+guilded-py = "1.12.1"
+websockets = "^12.0"
+pydantic = "^2.5.3"
+xkcd = "^2.4.2"
+cartoonista = "^0.5.1"
+python-urbandict = "^0.3.3"
+dateparser = "^1.2.0"
+pydictionary = "^2.0.1"
+horde-sdk = "^0.7.32"
+
+[tool.poetry.group.dev.dependencies]
+watchdog = "^3.0.0"
+colorama = "^0.4.6"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dev = "bot.__main__:main"
+prod = "bot.__main__:main"
