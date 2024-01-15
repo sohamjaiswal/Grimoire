@@ -7,10 +7,10 @@ from bot.utils.help import helper
 import asyncio
 import os
 
-from dotenv import load_dotenv
 from guilded.ext import commands
 
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 def check_environment_keys(keys: list[str]):
