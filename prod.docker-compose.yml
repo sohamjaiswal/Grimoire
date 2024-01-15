@@ -34,6 +34,6 @@ services:
     image: riimuru/consumet-api:latest
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - 6969:3000
     environment:
       - NODE_ENV=PROD
