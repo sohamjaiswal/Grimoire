@@ -35,10 +35,13 @@ class Ai(commands.Cog):
   async def _prompt_parse(
     self, tokens: List[str]
   ) -> Dict[str, str]:
-    args = {"-p": "", "-n": "", "-m": [], "nsfw": False}
+    args = {"-p": "", "-n": "", "-m": [], "nsfw": False, "dry_run": False}
     if "--nsfw" in tokens:
       args["nsfw"] = True
       tokens.remove("--nsfw")
+    if "--dry-run" in tokens:
+      args["dry_run"] = True
+      tokens.remove("--dry-run")
     if "-p" not in tokens:
       args["-p"] = " ".join(tokens)
       return args
@@ -68,6 +71,7 @@ class Ai(commands.Cog):
         r2=True,
         nsfw=kwargs["nsfw"],
         censor_nsfw=False,
+        dry_run=kwargs["dry_run"],
       ),
       check_callback=status_update_callback
     )
