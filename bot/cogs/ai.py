@@ -88,6 +88,7 @@ class Ai(commands.Cog):
     
   @horde.command()
   @commands.cooldown(1, 50, commands.BucketType.user)
+  @commands.max_concurrency(5, commands.BucketType.user)
   @grimoire
   async def image(self, ctx: commands.Context, *, prompt: str):
     '''
